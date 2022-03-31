@@ -1,19 +1,19 @@
-import { UpdateCategoryController } from './controllers/UpdateCategoryController';
-import { DeleteCategoryController } from './controllers/DeleteCategoryController';
-import { CreateCategoryController } from './controllers/CreateCategoryController';
-import { GetAllCategoriesController } from './controllers/GetAllCategoriesController';
-import { CreateVideoController } from './controllers/CreateVideoController';
-import { GetAllVideosController } from './controllers/GetAllVideosController';
+import { UpdatePlanetController } from './controllers/UpdatePlanetController';
+import { DeletePlanetController } from './controllers/DeletePlanetController';
+import { CreatePlanetController } from './controllers/CreatePlanetController';
+import { GetAllPlanetsController } from './controllers/GetAllPlanetsController';
+import { AuthenticateUserController } from './controllers/AuthenticateUserController';
+import { ensureAuthenticated } from './middlewares/ensureAuthenticated';
 import { Router } from "express";
 
 const routes = Router();
 
-routes.post("/categories", new CreateCategoryController().handle);
-routes.get("/categories", new GetAllCategoriesController().handle);
-routes.delete("/categories/:id", new DeleteCategoryController().handle);
-routes.put("/categories/:id", new UpdateCategoryController().handlee );
+routes.use(ensureAuthenticated);
 
-routes.post("/videos", new CreateVideoController().handle);
-routes.get("/videos", new GetAllVideosController().handle);
+routes.post("/planetas", new CreatePlanetController().handle);
+routes.get("/planetas", new GetAllPlanetsController().handle);
+routes.delete("/planetas/:id", new DeletePlanetController().handle);
+routes.put("/planetas/:id", new UpdatePlanetController().handlee );
 
+routes.post("/auth", new AuthenticateUserController().handle);
 export { routes };
