@@ -1,7 +1,7 @@
 import { getRepository, Repository } from "typeorm";
 import { Users } from "../entities/Users";
-import { compose } from "bcrypt";
-import { sing } from "jsonwebtoken";
+import { compare } from "bcrypt";
+import { sign } from "jsonwebtoken";
 
 type AuthRequest = {
   email: string;
@@ -40,7 +40,7 @@ export class AuthenticateUser {
       throw new Error("Email or password incorrect");
     }
 
-    const token = sing({}, "", {
+    const token = sign({}, "45a0ff0c706c46bd96a38f828b2753d6", {
       subject: userAlreadyExists.id,
       expiresIn: "1d"
     });

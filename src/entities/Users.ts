@@ -1,6 +1,6 @@
 import { Entity, Column, CreateDateColumn, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { Planets } from "./Planets";
+
 
 @Entity("usuarios")
 export class Users {
