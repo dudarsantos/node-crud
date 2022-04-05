@@ -12,7 +12,7 @@ const routes = Router();
 // routes.use(ensureAuthenticated);
 
 routes.post("/planetas", new CreatePlanetController().handle);
-routes.get("/planetas", new GetAllPlanetsController().handle);
+routes.get("/planetas/:page([0-9]+)?/:size([0-9]+)?", new GetAllPlanetsController().handle);
 routes.delete("/planetas/:id", new DeletePlanetController().handle);
 routes.put("/planetas/:id", new UpdatePlanetController().handlee );
 

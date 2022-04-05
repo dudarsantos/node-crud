@@ -1,13 +1,17 @@
 import { getRepository } from 'typeorm';
 import { Planets } from '../entities/Planets';
 
-
 export class GetAllPlanets {
-async execute() {
+async execute(skip: number = 0, take: number = 0) {
   const repo = getRepository(Planets);
 
-  const planets = await repo.find();
+  repo.createQueryBuilder("planetas")
 
-  return planets;
+  const planets = await repo.findAndCount({
+    skip,
+    take,
+  });
+
+  return {planets: planets[0], total: planets[1]};
 }
 }
